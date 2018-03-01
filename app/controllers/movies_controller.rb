@@ -10,6 +10,11 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
+  def checking(column)
+    if (params[:sort_by].to_s == column)
+      return 'hilite';
+  end
+
   def index
     @movies = Movie.order(params[:sort_by])
     @sort_column = params[:sort_by]
