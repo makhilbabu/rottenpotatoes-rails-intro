@@ -4,6 +4,7 @@ module MoviesHelper
     count.odd? ?  "odd" :  "even"
   end
   
+  # Highlights the clicked button
   def helper_checking(column)
     if (params[:sort_by].to_s == column)
       return 'hilite';
