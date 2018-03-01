@@ -13,6 +13,7 @@ class MoviesController < ApplicationController
   def checking(column)
     if (params[:sort_by].to_s == column)
       return 'hilite';
+    return nil;
   end
 
   def index
