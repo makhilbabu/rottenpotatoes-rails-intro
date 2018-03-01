@@ -13,6 +13,11 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.order(params[:sort_by])
     @sort_column = params[:sort_by]
+    
+    if params[:ratings]
+      @movies = Movie.where(:rating => params[:ratings].keys()).order(params[:sort_by])
+    end
+    @all_ratings = Movie.all_ratings
   end
 
   def new
@@ -43,7 +48,4 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
   
-  def movie_ratings
-    @all_ratings = Movie.select(:rating).distinct
-  end
 end
