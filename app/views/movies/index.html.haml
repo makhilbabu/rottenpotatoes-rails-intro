@@ -4,7 +4,7 @@
 %table#movies
   %thead
     %tr
-      %th link_to movies_path(:sort_by=>'release date'), <a href="/">Movie Title</a>
+      %th= link_to movies_path(:sort_by=>'release date'), <a href="/">Movie Title</a>
       %th Rating
       %th {:class=>("hilite" if @sort_column == "release_date")}= link_to 'Release Date', movies_path(:sort_by=>'release_date'), :id=>"release_date_header"
       %th More Info
