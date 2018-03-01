@@ -10,7 +10,7 @@ class MoviesController < ApplicationController
     # will render app/views/movies/show.<extension> by default
   end
 
-  def checking(column)
+  def helper_checking(column)
     if (params[:sort_by].to_s == column)
       return 'hilite';
     else
