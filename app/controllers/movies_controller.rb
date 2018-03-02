@@ -33,8 +33,8 @@ class MoviesController < ApplicationController
     if !@ratings
       @ratings = Hash.new
     end
-    @movies = Movie.all
-    if params[:ratings]
+    #@movies = Movie.all
+    if params[:ratings] and params[:sort_by]
       @movie = Movie.where(:rating=>params[:ratings].keys).order(params[:sort_by])
     end
       
