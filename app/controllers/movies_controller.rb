@@ -27,6 +27,7 @@ class MoviesController < ApplicationController
     if params[:commit] == "Refresh" and params[:ratings].nil?
       @ratings = nil
       session[:ratings] = nil
+      redirect = true
     elsif params[:ratings]
       @ratings = params[:ratings]
     else
@@ -54,17 +55,17 @@ class MoviesController < ApplicationController
       @movies = Movie.where(:rating=>@ratings.keys)
     elsif @sort_by
       @movies = Movie.order(@sort_by)
-    else
-      @movies = Movie.all
+    #else
+    #  @movies = Movie.all
     end
     
     if !@ratings
       @ratings = Hash.new
     end
     #@movies = Movie.all
-    if params[:ratings] and params[:sort_by]
-      @movie = Movie.where(:rating=>params[:ratings].keys).order(params[:sort_by])
-    end
+    #if params[:ratings] and params[:sort_by]
+    #  @movie = Movie.where(:rating=>params[:ratings].keys).order(params[:sort_by])
+    #end
       
     
     @sort_column = params[:sort_by]
