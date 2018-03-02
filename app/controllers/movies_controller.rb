@@ -16,12 +16,6 @@ class MoviesController < ApplicationController
     if params[:ratings]
       if params[:sort_by]
         @movies = Movie.where(:rating => params[:ratings].keys()).find(:all, :order=>(params[:sort_by]))
-      else
-        if params[:ratings]
-          @movies = Movie.where(:rating => params[:ratings].keys())
-        else
-          @movies = Movie
-        end
       end
     end
     
