@@ -12,7 +12,6 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.all_ratings
-    redirect = false;
     
     if params[:sort_by]
       session[:sort_by] = params[:sort_by]
@@ -21,6 +20,7 @@ class MoviesController < ApplicationController
       @sort_by = session[:sort_by]
       flash.keep
       redirect_to movies_path :sort_by=>@sort_by, :ratings=>@ratings
+      return
     else
       @sort_by = nil
     end
@@ -32,6 +32,7 @@ class MoviesController < ApplicationController
       @ratings = params[:ratings]
       flash.keep
       redirect_to movies_path :sort_by=>@sort_by, :ratings=>@ratings
+      return
     else
       @ratings = nil
     end
