@@ -15,9 +15,7 @@ class MoviesController < ApplicationController
     @sort_column = params[:sort_by]
     
     if params[:ratings]
-      if params[:sort_by]
-        @movies = Movie.where(:rating => params[:ratings].keys()).find(:all, :order=>(params[:sort_by]))
-      end
+      @movies = Movie.where(:rating => params[:ratings].keys()).find(:all, :order=>(@sort_column))
     end
     @all_ratings = Movie.all_ratings
     @set_ratings = params[:ratings]
