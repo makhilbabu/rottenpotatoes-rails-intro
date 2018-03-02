@@ -19,9 +19,9 @@ class MoviesController < ApplicationController
       @sort_by = params[:sort_by]
     elsif session[:sort_by]
       @sort_by = session[:sort_by]
-      redirect = true
     else
-      @sort_by = nil
+      @sort_by = ""
+      redirect = true
     end
     
     if params[:commit] == "Refresh" and params[:ratings].nil?
@@ -29,14 +29,14 @@ class MoviesController < ApplicationController
       session[:ratings] = nil
     elsif params[:ratings]
       @ratings = params[:ratings]
-      redirect = true
     else
       @ratings = nil
+      redirect = true
     end
     
     if redirect
       flash.keep
-      redirect_to movies_path :sort_by=>@sort_by, :ratings=>@ratings
+      redirect_to movies_path(:sort_by=>session[:sort_by], :ratings=>session[:ratings])
       return
     end
     
