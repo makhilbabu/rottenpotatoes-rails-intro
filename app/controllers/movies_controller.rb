@@ -13,6 +13,14 @@ class MoviesController < ApplicationController
   def index
     if (session[:sort_by].nil? and params[:sort_by].nil? and params[:ratings].nil? and session[:ratings].nil?)
       @movies = Movie.all
+      
+      @sort_column = params[:sort_by]
+    
+      @set_ratings = params[:set_ratings]
+    
+      if !@set_ratings
+        @set_ratings = Hash.new
+      end
       return
     end
     
