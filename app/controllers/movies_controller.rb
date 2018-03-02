@@ -28,6 +28,7 @@ class MoviesController < ApplicationController
       @ratings = session[:ratings]
     elsif params[:ratings]
       @ratings = params[:ratings]
+      session[:ratings] = params[:ratings]
     else
       @ratings = nil
       redirect = true
