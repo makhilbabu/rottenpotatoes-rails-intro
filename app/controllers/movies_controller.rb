@@ -11,21 +11,29 @@ class MoviesController < ApplicationController
   end
 
   def index
-    @movies = Movie.order(params[:sort_by])
     
-    @ratings = params[:ratings].keys if params.keys.include? "ratings"
+    if params[:sort_by]
+      session[:sort_by] = params[:sort_by]
+    end
     
     if params[:ratings]
-      if params[:sort_by]
-        @movies = Movie.where(:rating => @ratings).find(:all, :order=>(params[:sort_by]))
+      session[:ratings] = params[:ratings]
+    end
+    
+    @movies = Movie.order(session[:sort_by])
+    if session.keys.include? "ratings"
+      @ratings = session[:ratings].keys 
+    if session[:ratings]
+      if session[:sort_by]
+        @movies = Movie.where(:rating => @ratings).find(:all, :order=>(session[:sort_by]))
       else
         @movies = Movie.where(:rating => @ratings)
       end
     end
     
-    @sort_column = params[:sort_by]
+    @sort_column = session[:sort_by]
     @all_ratings = Movie.all_ratings
-    @set_ratings = params[:ratings]
+    @set_ratings = session[:ratings]
     if !@set_ratings
       @set_ratings = Hash.new
     end
