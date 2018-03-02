@@ -23,6 +23,7 @@ class MoviesController < ApplicationController
     @movies = Movie.order(session[:sort_by])
     if session.keys.include? "ratings"
       @ratings = session[:ratings].keys 
+    end
     if session[:ratings]
       if session[:sort_by]
         @movies = Movie.where(:rating => @ratings).find(:all, :order=>(session[:sort_by]))
