@@ -11,6 +11,12 @@ class MoviesController < ApplicationController
   end
 
   def index
+    if (session[:sort_by].nil? and params[:sort_by].nil? and params[:ratings].nil? and session[:ratings].nil?)
+      @movies = Movie.all
+      return
+    end
+    
+    
     @all_ratings = Movie.all_ratings
     redirect = false
     
