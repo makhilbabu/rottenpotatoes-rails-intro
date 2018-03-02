@@ -34,7 +34,7 @@ class MoviesController < ApplicationController
       @ratings = nil
     end
     
-    if comeback = true
+    if comeback
       flash.keep
       redirect_to movies_path :sort_by=>@sort_by, :ratings=>@ratings
       return
