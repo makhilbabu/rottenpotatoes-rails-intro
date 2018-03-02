@@ -21,6 +21,7 @@ class MoviesController < ApplicationController
           @movies = Movie.where(:rating => params[:ratings].keys())
         else
           @movies = Movie
+        end
       end
     end
     
